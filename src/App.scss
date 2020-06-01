@@ -1,0 +1,25 @@
+.app {
+  text-align: center;
+  margin: 24px;
+
+  &__array-list {
+    width: 200px;
+    height: 140px;
+  }
+
+  &__submit-btn {
+    width: 100px;
+    display: block;
+    text-align: center;
+    margin: auto;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: blue;
+    cursor: pointer;
+    &:hover {
+      color: #ddd;
+    }
+  }
+}

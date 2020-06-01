@@ -1,0 +1,15 @@
+.tree {
+  display: inline-block;
+  width: 100%;
+  padding: 16px;
+  margin-top: 4px;
+  border: 1px solid #ddd;
+  &__title {
+    font-size: 18px;
+    color: black;
+  }
+  &__branch {
+    display: block;
+    text-align: left;
+  }
+}

@@ -1,26 +1,58 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import Tree from './Tree';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      tempObject: {},
+      finalObject: {}
+    }
+  }
+
+  handleArrayInput = input => {
+    let arr = input.split('\n');
+    const obj = {};
+    for(let i = 0; i< arr.length; i++) {
+      let currentObj = obj;
+      const innerArr = arr[i].split(".");
+  
+      for (let j = 0; j < innerArr.length; j++) {
+          let currentItem = innerArr[j];
+          currentObj[currentItem] = currentObj[currentItem] || {};
+          currentObj = currentObj[currentItem];
+      }
+    }
+   this.setState({tempObject: obj});
+  }
+
+  handleInputSubmit = _ => {
+    this.setState({finalObject: this.state.tempObject});
+  }
+
+  render () {
+    return (
+      <div className="app">
+        <textarea
+          className="app__array-list"
+          placeholder="Enter list, use enter to add new entry to list"
+          onChange={e => this.handleArrayInput(e.target.value)}
+        />
+        <button
+          className="app__submit-btn"
+          onClick={this.handleInputSubmit}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          Submit
+        </button>
+        <Tree 
+          object={this.state.finalObject}
+          index={0}
+        />
+      </div>
+    )
+  }
 }
-
 export default App;
+
+
